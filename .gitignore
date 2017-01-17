@@ -1,0 +1,37 @@
+# Recursive
+target
+*.iml
+*.ipr
+*.iws
+
+cobertura.ser
+.DS_Store
+.idea/
+
+# Eclipse
+#.project
+#.settings
+#.classpath
+#.springBeans
+
+# Temporary
+/storage
+*/storage
+/data
+*/data
+
+#Logs
+logs/
+*.log
+
+# Gradle
+build/
+gradle
+gradlew
+gradlew.bat
+.gradle
+classes
+
+# Ansible
+*.retry
+
