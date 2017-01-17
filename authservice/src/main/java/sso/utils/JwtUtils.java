@@ -21,14 +21,14 @@ public class JwtUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtUtils.class);
     private static final String AUTH_SERVICE_NAME = "Authorization service.";
 
-    public static String generateToken(String signingKey, String subject) {
+    public static String generateToken(String signingKey, String subject, int expirationMinutes) {
         long nowMillis = System.currentTimeMillis();
         Date issuedDate = new Date(nowMillis);
 
         Instant instant = Instant.ofEpochMilli(issuedDate.getTime());
         ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
         LocalDateTime expirationDate = zdt.toLocalDateTime();
-        expirationDate = expirationDate.plusMinutes(1);
+        expirationDate = expirationDate.plusMinutes(expirationMinutes);
 
         Claims claims = Jwts.claims();
         claims.setSubject(subject);

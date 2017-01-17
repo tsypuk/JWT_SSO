@@ -25,12 +25,16 @@ public class LoginController {
 
     private final String jwtTokenCookieName;
     private final String signInKey;
+    private final int expirationMinutes;
 
     @Autowired
     public LoginController(@Value("${services.cookieName}") String jwtTokenCookieName,
-                           @Value("${services.signinKey}") String signInKey) {
+                           @Value("${services.signinKey}") String signInKey,
+                           @Value("${services.expiration.min}") int expirationMinutes
+                           ) {
         this.jwtTokenCookieName = jwtTokenCookieName;
         this.signInKey = signInKey;
+        this.expirationMinutes = expirationMinutes;
         loadCredentialsFromStorage();
     }
 
@@ -61,7 +65,7 @@ public class LoginController {
             return "login";
         }
 
-        String token = JwtUtils.generateToken(signInKey, username);
+        String token = JwtUtils.generateToken(signInKey, username, expirationMinutes);
         CookieUtils.create(httpServletResponse, jwtTokenCookieName, token, false, -1, "localhost");
 
         return "redirect:" + redirect;
