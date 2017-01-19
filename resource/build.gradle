@@ -46,8 +46,12 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-freemarker')
+    // jwt
     compile 'io.jsonwebtoken:jjwt:0.7.0'
-
     // Logging
     compile 'org.slf4j:slf4j-api:1.7.21'
+
+    compile 'junit:junit:4.12'
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
